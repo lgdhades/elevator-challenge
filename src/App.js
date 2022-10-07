@@ -3,21 +3,21 @@ import styled from 'styled-components'
 
 /*---> Component <---*/
 export const App = () => {
-  const [floor, setFloor] = useState(0)
+  const [position, setPosition] = useState(0)
   const [isDoorClosed, setIsDoorClosed] = useState(false)
 
   const handleClick = (floor) => {
     setIsDoorClosed(true)
     setTimeout(() => {
       floor === '0' ?
-        setFloor(0)
-        : floor === '1' ? setFloor(-50)
-          : floor === '2' ? setFloor(-100)
-            : floor === '3' ? setFloor(-150)
-              : floor === '4' ? setFloor(-200)
-                : floor === '5' ? setFloor(-250)
-                  : floor === '6' ? setFloor(-300)
-                    : setFloor(0)
+        setPosition(0)
+        : floor === '1' ? setPosition(-50)
+          : floor === '2' ? setPosition(-100)
+            : floor === '3' ? setPosition(-150)
+              : floor === '4' ? setPosition(-200)
+                : floor === '5' ? setPosition(-250)
+                  : floor === '6' ? setPosition(-300)
+                    : setPosition(0)
     }, [1000])
     setTimeout(() => { setIsDoorClosed(false) }, [2000])
   }
@@ -25,7 +25,7 @@ export const App = () => {
   return (
     <PageWrapper>
       <Building>
-        <Elevator floor={floor}>
+        <Elevator position={position}>
           <Door isDoorClosed={isDoorClosed}></Door>
         </Elevator>
       </Building>
@@ -96,7 +96,7 @@ export const Elevator = styled.div`
   width: 100px;
   transition: transform 1s;
   position: absolute;
-  transform: ${(props) => `translateY(${props.floor}px)`};
+  transform: ${(props) => `translateY(${props.position}px)`};
 `
 
 export const Door = styled.div`
